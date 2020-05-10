@@ -496,7 +496,7 @@
                       </div>
                     </div>
                       <div class="form-group col-md-4">
-                      <label for="time" class="label">Photo</label>
+                      <label for="file" class="label">Photo</label>
                       <div class="form-field-icon-wrap">
                         <span class="icon ion-android-time"></span>
                         <input type="file" class="form-control" name="image">

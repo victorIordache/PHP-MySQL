@@ -27,6 +27,16 @@ $sql2="CREATE PROCEDURE insertRes(
         (name,email,phone,persons,date,time,image)
     VALUES (strNume, strEmail, phone, persons,strDate,strTime,strImage);
     END;";
+$msg="";
+
+$target="images/".md5(uniqid(time())).basename($_FILES['image']['name']);
+    $sqls="CALL insertImage('{$target}')";
+    $q11=$conn->query($sqls);
+    if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){
+        echo 'e bine';
+        
+    }
+    
 $stmt1=$conn->prepare($sql1);
 $stmt2=$conn->prepare($sql2);
 $stmt1->execute();
@@ -38,10 +48,7 @@ $phone=$_POST['phone_number'];
 $persons=$_POST['persons'];
 $date=$_POST['date'];
 $time=$_POST['time'];
-$target="images/".md5(uniqid(time())).basename($_FILES['image']['name']);
 
-move_uploaded_file($_FILES['image']['tmp_name'], $target);
-  
 
 $sql3="CALL insertRes('{$name}','{$email}','{$phone}','{$persons}','{$date}','{$time}','{$target}')";
 $q=$conn->query($sql3);
